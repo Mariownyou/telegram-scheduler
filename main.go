@@ -75,12 +75,10 @@ func main() {
 	updates := bot.GetUpdatesChan(u)
 
 	for update := range updates {
-		if update.Message != nil {
-			if update.Message.IsCommand() {
-				switch update.Message.Command() {
-				case "task":
-					go handleTask(update)
-				}
+		if update.Message != nil && update.Message.IsCommand() {
+			switch update.Message.Command() {
+			case "task":
+				go handleTask(update)
 			}
 		}
 	}
